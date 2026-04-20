@@ -36,3 +36,29 @@ This project enhances the traditional FIFO by adding:
 
 * Event-driven monitoring
 * CDC stress analysis under random conditions
+## 🏗️ System Architecture
+
+The asynchronous FIFO is designed with separate write and read clock domains to enable safe data transfer across clock boundaries.
+
+### Key Components:
+
+* **Write Pointer (wr_clk domain):**
+  Handles write operations and updates the write address.
+
+* **Read Pointer (rd_clk domain):**
+  Handles read operations and updates the read address.
+
+* **FIFO Memory:**
+  Stores data temporarily between write and read operations.
+
+* **Gray Code Conversion:**
+  Converts binary pointers to Gray code to minimize multi-bit transitions.
+
+* **2-Flip-Flop Synchronizer:**
+  Synchronizes Gray-coded pointers across clock domains to reduce metastability risk.
+
+* **Full and Empty Logic:**
+  Determines FIFO status using synchronized pointers.
+
+---
+
